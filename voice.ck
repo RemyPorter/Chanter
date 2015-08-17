@@ -41,6 +41,10 @@ public class Chanters {
 		freq => rootVoice.freq;
 		freq => blendVoice.freq;
 	}
+	fun void phoneme(string phn) {
+		phn => rootVoice.phoneme => blendVoice.phoneme;
+		0 => mix.pan;
+	}
 	fun void phoneme(string phn, dur shiftTime) {
 		rootVoice.phoneme() => blendVoice.phoneme;
 		phn => rootVoice.phoneme;
@@ -53,9 +57,11 @@ public class Chanters {
 	fun void init() {
 		4::ms => near.delay;
 		8::ms => far.delay;
-		0.4 => rootVoice.vibratoFreq => blendVoice.vibratoFreq;
-		0.8 => rootVoice.voiced => blendVoice.voiced;
 		buildVoices(5);
+		vibratoFreq(0.4);
+		voiced(0.8);
+		gain(1.0);
+		phoneme("eee");
 	}
 }
 
