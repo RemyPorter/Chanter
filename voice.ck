@@ -5,7 +5,7 @@ public class Chanters {
 	Mix2 mix;
 	VoicForm rootVoice => mix.left;
 	VoicForm blendVoice => mix.right;
-	mix => NRev reverb => Echo near => Echo far => Gain g => dac;
+	mix => NRev reverb => Echo near => Echo far => Gain g => Pan2 p => dac;
 	fun void buildVoices(int voiceCount) {
 		for (0 => int j; j < voiceCount; j++) {
 			reverb => DelayL d => PitShift ps => near;
@@ -53,6 +53,15 @@ public class Chanters {
 			mix.pan() + 0.1 => mix.pan;
 			(shiftTime/20) => now;
 		}
+	}
+	fun void phoneme(float phn) {
+		(phn*128.0) $ int => int phon;
+		rootVoice.phonemeNum(phon);
+		1::ms => now;
+		blendVoice.phonemeNum(phon);
+	}
+	fun void pan(float pan) {
+		pan => p.pan;
 	}
 	fun void init() {
 		4::ms => near.delay;
