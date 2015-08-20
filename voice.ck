@@ -63,10 +63,10 @@ public class Chanters {
 	fun void pan(float pan) {
 		pan => p.pan;
 	}
-	fun void init() {
+	fun void init(int voices) {
 		4::ms => near.delay;
 		8::ms => far.delay;
-		buildVoices(5);
+		buildVoices(voices);
 		vibratoFreq(0.4);
 		voiced(0.8);
 		gain(1.0);
