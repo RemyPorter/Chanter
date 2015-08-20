@@ -24,7 +24,7 @@ fun void lxy(float x, float y) {
 	x => c.phoneme;
 }
 fun void rxy(float x, float y) {
-	y * 880 => c.freq;
+	1 + y * 1000 => c.freq;
 	x => c.voiced;
 }
 fun void fade(float p) {
