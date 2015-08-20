@@ -5,7 +5,7 @@ OscIn server;
 "/faderM" => string fader => server.addAddress;
 OscMsg msg;
 Chanters c;
-10 => c.buildVoices;
+10 => c.init;
 while (true) {
 	server => now;
 	while(server.recv(msg)) {
