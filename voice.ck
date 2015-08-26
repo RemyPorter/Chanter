@@ -7,7 +7,7 @@ public class Chanters {
 	VoicForm blendVoice => mix.right;
 	mix => NRev reverb => Echo near => Echo far => Gain g => Pan2 p => ADSR env => dac;
 	env.set(200::ms, 500::ms, 0.9, 800::ms);
-	false => boolean on;
+	false => int on;
 	fun void buildVoices(int voiceCount) {
 		for (0 => int j; j < voiceCount; j++) {
 			reverb => DelayL d => PitShift ps => near;
@@ -22,9 +22,9 @@ public class Chanters {
 	}
 	fun void keyOff() {
 		env.keyOff();
-		true => off;
+		false => on;
 	}
-	fun boolean playing() { return on; }
+	fun int playing() { return on; }
 	fun void vibratoFreq(float freq) {
 		freq => rootVoice.vibratoFreq;
 		freq => blendVoice.vibratoFreq;
